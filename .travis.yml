@@ -1,0 +1,14 @@
+language: java
+jdk:
+- oraclejdk8
+after_success:
+- "./gradlew cobertura coveralls"
+cache:
+  directories:
+  - "$HOME/.m2"
+  - "$HOME/.gradle"
+deploy:
+  provider: heroku
+  app: http4k-react
+  api_key:
+    secure: wsg6P5ZOqBOYNdjJWEYg/3v7UyB73QPV2iz4MrtZY0d/hFmlTV/qtbgB5JRdoMRIE2OmF7zIeodjemeRrg2iVReY5fYHaQ3krICXFI/v0hCsqqNu0Asjz4imaGoZh16zr5k7KPYWsg4iEG2ziHEq7aQ7UuJeaV0zgq96i4qnNZk8kVKSdKUSCcO3n5Tyyt9BDWHotzqhhIgJTfMB/+K5oJU8B66AaxAszt1jt5wXwsowjCLjPWNIsao9wpcGrXKY6rYztVGgPwSTJLA8BMiMEHRGajsCCCTfeEmVVJqZ+mmC7Vvt9ULbsqYIm8soy+M3xmy3QC40d2nUp5DPxnXugMy+NCQ5IZXXfoohTzklp1gWckyUOt/fjmp3dQ4dUxupTAjwSs7BJeAqkIRCMjb6qxp060IrUFmM23yGdP/UiuGxbfmLU/Dj84VgfkhOlANwwgAYJLC9+euuiMBsaEmNPI9NMnHrzrNM9o6Q8BbQFFCVnbXOxQmWAqqJ1z5kDFbWS2+RZTFkS3aj51unTKj6tGeJG1AQ7cBwmELYtzXe4xfw8mDh1VsA+se5YwuyXeAJD+YRuSSsww6OV1ZM/6zs7Q7UhoiDdQgsvl4qOXOhzPyLydmbdfsYKlDYBAvQv8uXXLH4PHQFMSNmpKbYKNgEs5rLLZZTDOgw06IykQuWzsE=
