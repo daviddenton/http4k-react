@@ -6,7 +6,7 @@ module.exports = {
     cache: true,
     output: {
         path: __dirname,
-        filename: './src/main/bundle/js/bundle.js'
+        filename: './src/main/resources/js/bundle.js'
     },
     module: {
         loaders: [

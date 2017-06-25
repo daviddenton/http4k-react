@@ -20,7 +20,7 @@ object Api {
     private val employees = Body.auto<EmployeeList>().toLens()
 
     operator fun invoke(): RoutingHttpHandler = routes(
-        "/api/employees" to GET bind {
+        "/employees" to GET bind {
             Response(OK).with(employees of EmployeeList(listOf(Employee(UUID.randomUUID().toString(), "rita"))))
         }
     )
