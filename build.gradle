@@ -38,4 +38,13 @@ dependencies {
 
 mainClassName = 'org.http4k.react.ReactApp'
 
+sourceSets {
+    main {
+        resources {
+            srcDir 'src/resources'
+            srcDir 'src/bundle'
+        }
+    }
+}
+
 task stage(dependsOn: ['installDist'])
