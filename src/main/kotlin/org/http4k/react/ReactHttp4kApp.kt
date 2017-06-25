@@ -3,6 +3,7 @@ package org.http4k.react
 import org.http4k.core.then
 import org.http4k.filter.CorsPolicy.Companion.UnsafeGlobalPermissive
 import org.http4k.filter.ResponseFilters
+import org.http4k.filter.ServerFilters
 import org.http4k.filter.ServerFilters.Cors
 import org.http4k.routing.ResourceLoader
 import org.http4k.routing.bind
@@ -21,9 +22,10 @@ object Auditor {
 object ReactHttp4kApp {
     operator fun invoke(port: Int, resourceLoader: ResourceLoader): Http4kServer =
         Cors(UnsafeGlobalPermissive)
+            .then(ServerFilters.CatchLensFailure)
             .then(
                 routes(
-                    "/api" bind Auditor().then(Api()),
+                    "/api" bind Auditor().then(Api(Employees())),
                     "/" bind static(resourceLoader)
                 )
             )

@@ -13,7 +13,7 @@ class App extends React.Component {
 
     componentDidMount() {
         client({method: 'GET', path: '/api/employees'}).then(response => {
-            this.setState({employees: response.entity.employees});
+            this.setState({employees: response.entity});
         });
     }
 
