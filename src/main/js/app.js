@@ -2,7 +2,7 @@
 
 const React = require('react');
 const ReactDOM = require('react-dom')
-const client = require('./client');
+const ajax = require('superagent');
 const EmployeeList = require('./components/EmployeeList');
 
 class App extends React.Component {
@@ -12,9 +12,11 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        client({method: 'GET', path: '/api/employees'}).then(response => {
-            this.setState({employees: response.entity});
-        });
+        const c = this;
+        ajax.get('/api/employee')
+            .end(function (err, res) {
+                c.setState({employees: JSON.parse(res.text)});
+            });
     }
 
     render() {

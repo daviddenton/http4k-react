@@ -21,7 +21,7 @@ import java.util.*
 data class Employee(val id: String?, val firstName: String)
 
 class Employees {
-    private val all = mutableListOf<Employee>()
+    private val all = mutableListOf<Employee>(Employee(UUID.randomUUID().toString(), "Bob"))
 
     fun list() = all.toList()
 
@@ -44,22 +44,22 @@ object Api {
     private val id = Path.uuid().of("id")
 
     operator fun invoke(employees: Employees): RoutingHttpHandler = routes(
-        "/employees" to GET bind {
+        "/employee" to GET bind {
             Response(OK).with(listEmployeesBody of employees.list())
         },
-        "/employees/{id}" to GET bind {
+        "/employee/{id}" to GET bind {
             employees[id.extract(it)]
                 ?.let {
                     Response(OK).with(employeeBody of it)
                 } ?: Response(NOT_FOUND)
         },
-        "/employees/{id}" to DELETE bind {
+        "/employee/{id}" to DELETE bind {
             employees.delete(id.extract(it))
                 ?.let {
                     Response(ACCEPTED).with(employeeBody of it)
                 } ?: Response(NOT_FOUND)
         },
-        "/employees" to POST bind {
+        "/employee" to POST bind {
             Response(CREATED).with(employeeBody of employees.add(employeeBody.extract(it)))
         }
     )
