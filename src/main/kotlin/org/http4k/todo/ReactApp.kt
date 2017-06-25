@@ -22,7 +22,7 @@ fun main(args: Array<String>) {
             "/api" bind routes(
                 "/" to GET bind { Response(OK) }
             ),
-            "/" bind static(Directory("src/main/resources"), "jsx" to ContentType("text/babel"))
+            "/" bind static(Directory("src/main/resources"), "jsx" to ContentType("text/jsx"))
         ))
         .asServer(Jetty(port.toInt())).start().block()
 }

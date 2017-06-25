@@ -1,30 +1,11 @@
-const RandomMessage = React.createClass({
-    getInitialState: function () {
-        return {message: 'Hello, Universe'};
-    }, onClick: function () {
-        var messages = ['Hello, World', 'Hello, Planet', 'Hello, Universe'];
-        var randomMessage = messages[Math.floor((Math.random() * 3))];
-
-        this.setState({message: randomMessage});
-    }, render: function () {
-        return (
-            <div>
-                <MessageView message={ this.state.message }/>
-                <p><input type="button" onClick={ this.onClick } value="Change Message"/></p>
-            </div>
-        );
-    }
-});
-
-const MessageView = React.createClass({
-    render: function() {
-        return (
-            <p>{ this.props.message }</p>
-        );
-    }
-});
+const {Router, Route, IndexRoute, hashHistory} = ReactRouter;
 
 ReactDOM.render(
-    <RandomMessage />,
+    <Router history={hashHistory}>
+        <Route path="/" component={Container}>
+            <IndexRoute component={HomePage}/>
+            <IndexRoute component={HomePage2}/>
+        </Route>
+    </Router>,
     document.getElementById('root')
 );
